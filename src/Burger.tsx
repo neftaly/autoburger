@@ -7,16 +7,16 @@ export const toppings = {
   lettuce: { color: "green", size: [1.1, 0.05, 1.1] },
 };
 
-export const Layer = ({ color, size }) => (
+export const Layer = ({ type }) => (
   <FlexBox centerAnchor>
-    <Box args={size} material-color={color} />
+    <Box args={toppings[type].size} material-color={toppings[type].color} />
   </FlexBox>
 );
 
 export const Burger = ({ layers }) => (
   <Flex justifyContent="center" alignItems="center">
-    {layers.map((layer, key) => (
-      <Layer key={key} {...layer} />
+    {layers.map((type, key) => (
+      <Layer key={key} type={type} />
     ))}
   </Flex>
 );

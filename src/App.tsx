@@ -4,12 +4,7 @@ import { OrbitControls, Stage, Box } from "@react-three/drei";
 import { Burger, toppings } from "./Burger";
 
 const App = () => {
-  const [layers, setLayers] = useState([
-    toppings.bun,
-    toppings.patty,
-    toppings.lettuce,
-    toppings.bun,
-  ]);
+  const [layers, setLayers] = useState(["bun", "patty", "lettuce", "bun"]);
 
   return (
     <Canvas
