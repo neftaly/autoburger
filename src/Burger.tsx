@@ -16,8 +16,8 @@ export const Layer = ({ type }) => {
   );
 };
 
-export const Burger = ({ layers }) => (
-  <Flex justifyContent="center" alignItems="center">
+export const Burger = ({ position, layers }) => (
+  <Flex justifyContent="center" alignItems="center" position={[-0.5, 0, 0]}>
     {layers.map((type, key) => (
       <Layer key={key} type={type} />
     ))}
