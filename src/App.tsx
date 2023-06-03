@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stage, Box } from "@react-three/drei";
+import { OrbitControls, Box } from "@react-three/drei";
 import { Burger, toppings } from "./Burger";
 
 const App = () => {
   const [layers, setLayers] = useState(["bun", "patty", "lettuce", "bun"]);
-
   return (
     <Canvas
       style={{
@@ -17,9 +16,8 @@ const App = () => {
         backgroundColor: "skyblue",
       }}
     >
-      <Stage intensity={0.5} adjustCamera>
-        <Burger layers={layers} />
-      </Stage>
+      <ambientLight intensity={0.5} />
+      <Burger layers={layers} />
       <OrbitControls
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 1.9}
