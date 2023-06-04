@@ -1,5 +1,8 @@
 import { Box } from "@react-three/drei";
 import { Flex, Box as FlexBox } from "@react-three/flex";
+import { Vector3} from '@react-three/fiber';
+
+
 
 export const toppings = {
   bun: { color: "yellow", args: [1.2, 0.2, 1.2] },
@@ -7,7 +10,10 @@ export const toppings = {
   lettuce: { color: "green", args: [1.1, 0.05, 1.1] },
 };
 
-export const Layer = ({ type }) => {
+export const Layer = ({ type }: { type: string }) => {
+  
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const { args, color } = toppings[type];
   return (
     <FlexBox centerAnchor>
@@ -17,9 +23,9 @@ export const Layer = ({ type }) => {
 };
 
 // As we're building from the bottom up, reverse the layer order
-export const Burger = ({ position, layers }) => (
-  <Flex justifyContent="center" alignItems="center" position={[-0.5, 0, 0]}>
-    {layers.reverse().map((type, key) => (
+export const Burger = ({ position, layers }:{ position: Vector3, layers: string[]}) => (
+  <Flex justifyContent="center" alignItems="center" position={position}>
+    {layers.map((type: string, key: number) => (
       <Layer key={key} type={type} />
     ))}
   </Flex>
