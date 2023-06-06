@@ -25,10 +25,7 @@ export const Cursor = ({
   />
 );
 
-export const Cursors = ({
-  peerStates = [],
-  heartbeats = [],
-}) => {
+export const Cursors = ({ peerStates = [], heartbeats = [] }) => {
   // Update cursor timeout every second
   const [nowTime, setNowTime] = useState(new Date().getTime());
   useEffect(() => {

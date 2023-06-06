@@ -3,19 +3,18 @@ import { OrbitControls } from "@react-three/drei";
 import { useDocument } from "automerge-repo-react-hooks";
 import { Burger } from "./Burger";
 import { Cursors } from "./Cursors";
+import { LocalColor, getRandomColor } from "./LocalColor";
 
 // https://github.com/automerge/automerge-repo/pull/45
 import { useLocalAwareness } from "./useLocalAwareness";
 import { useRemoteAwareness } from "./useRemoteAwareness";
-
-const getRandomColor = () => "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')
 
 const App = ({ documentId, userId }) => {
   const [doc, changeDoc] = useDocument(documentId);
 
   const channelId = `${documentId}-useAwareness`;
   const [localState, updateLocalState] = useLocalAwareness(userId, channelId, {
-    color: getRandomColor()
+    color: getRandomColor(),
   });
   const [peerStates, heartbeats] = useRemoteAwareness(channelId, {
     localUserId: userId,
@@ -62,6 +61,7 @@ const App = ({ documentId, userId }) => {
           width: "auto",
         }}
       >
+        <LocalColor color={localState.color} />
         <button
           children="+"
           onClick={() => {
@@ -74,9 +74,6 @@ const App = ({ documentId, userId }) => {
               doc.layers.push("patty");
             });
           }}
-        />
-        <pre
-          children={JSON.stringify({ doc, localState, peerStates }, null, 2)}
         />
       </div>
 
