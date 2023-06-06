@@ -23,7 +23,7 @@ const App = ({ documentId, userId }) => {
 
   return (
     <div
-      onMouseMove={(event) => {
+      onPointerMove={(event) => {
         // Local mouse position, relative to center
         const cursor = [
           event.clientX - window.innerWidth / 2,

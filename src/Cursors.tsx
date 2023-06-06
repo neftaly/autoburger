@@ -1,27 +1,61 @@
-// How close is this peer to reaching the timeout? (0 to 1)
-export const getTimeoutProgress = (
-  heartbeatTime = 0,
-  nowTime = new Date().getTime()
-) => 1 - (nowTime - heartbeatTime) / 30000;
+import { MathUtils } from "three";
+import { useEffect, useState } from "react";
 
-// TODO: Re-render every second or so (using nowTime) to fade out cursors
-export const Cursors = ({ peerStates = [], heartbeats = [] }) =>
-  Object.entries(peerStates).map(
-    ([key, { cursor: [x, y] = [0, 0], color = "white" }]) => (
-      <div
-        key={key}
-        style={{
-          backgroundColor: color,
-          border: `2px solid ${color}`,
-          opacity: getTimeoutProgress(heartbeats[key]) * 0.8, // Fade out cursors with old heartbeats
-          position: "absolute",
-          left: window.innerWidth / 2 + x,
-          top: window.innerHeight / 2 + y,
-          transition: "top 0.05s linear, left 0.05s linear, opacity 1s linear", // Smooth out cursor & opacity updates
-          borderRadius: "1em",
-          padding: "0 1px 2px 1px",
-        }}
-        children="🍔"
-      />
-    )
+export const Cursor = ({
+  offset: [x, y] = [0, 0],
+  color,
+  heartbeat = 0,
+  nowTime,
+}) => (
+  <div
+    style={{
+      position: "absolute",
+      opacity: (1 - (nowTime - heartbeat) / 30000) * 0.8, // Fade out cursors with old heartbeats
+      border: `2px solid ${color}`,
+      backgroundColor: color,
+      transition: "top 0.05s linear, left 0.05s linear, opacity 0.95s linear", // Smooth out cursor & opacity updates
+      borderRadius: "1em",
+      padding: "0 1px 2px 1px",
+      transform: "translate(-50%, -50%)", // Center icon on cursor position
+      // Position cursor relative to center; don't let cursors go offscreen
+      top: MathUtils.clamp(window.innerHeight / 2 + y, 0, window.innerHeight),
+      left: MathUtils.clamp(window.innerWidth / 2 + x, 0, window.innerWidth),
+    }}
+    children="🍔"
+  />
+);
+
+export const Cursors = ({
+  peerStates = [],
+  heartbeats = [],
+}) => {
+  // Update cursor timeout every second
+  const [nowTime, setNowTime] = useState(new Date().getTime());
+  useEffect(() => {
+    const timer = setInterval(() => setNowTime(new Date().getTime()), 1000);
+    return () => void clearInterval(timer);
+  }, []);
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        overflow: "hidden",
+        pointerEvents: "none",
+        userSelect: "none",
+      }}
+      children={Object.entries(peerStates).map(([key, { cursor, color }]) => (
+        <Cursor
+          key={key}
+          offset={cursor}
+          color={color}
+          heartbeat={heartbeats[key]}
+          nowTime={nowTime}
+        />
+      ))}
+    />
   );
+};
