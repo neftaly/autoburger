@@ -1,29 +1,12 @@
-import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Box } from "@react-three/drei";
-import { Burger, toppings } from "./Burger";
+import { OrbitControls } from "@react-three/drei";
 import { useDocument } from "automerge-repo-react-hooks";
-import { applyChange } from "./util";
+import { Burger } from "./Burger";
+import { Cursors } from "./Cursors";
+
+// https://github.com/automerge/automerge-repo/pull/45
 import { useLocalAwareness } from "./useLocalAwareness";
 import { useRemoteAwareness } from "./useRemoteAwareness";
-
-const Cursors = ({ peerStates = [] }) =>
-  Object.values(peerStates).map(
-    ({ cursor: [x, y] = [0, 0], color = "white" }, key) => (
-      <div
-        key={key}
-        style={{
-          position: "absolute",
-          left: window.innerWidth / 2 + x,
-          top: window.innerHeight / 2 + y,
-          backgroundColor: color,
-          border: `2px solid ${color}`,
-          borderRadius: "1em",
-        }}
-        children="🍔"
-      />
-    )
-  );
 
 const App = ({ documentId, userId }) => {
   const [doc, changeDoc] = useDocument(documentId);
@@ -37,7 +20,7 @@ const App = ({ documentId, userId }) => {
   });
 
   const layers = doc?.layers ?? ["bun"];
-  // const [layers, setLayers] = useState(["bun", "patty", "lettuce", "bun"]);
+
   return (
     <div
       onMouseMove={(event) => {
@@ -77,20 +60,25 @@ const App = ({ documentId, userId }) => {
           width: "auto",
         }}
       >
-        {/*<button children='+' onClick={
-        () => {
-            changeDoc(doc => {
-            if (!doc.layers) doc.layers = []
-            doc.layers.push('patty')
-            })
-          }
-      } />*/}
+        <button
+          children="+"
+          onClick={() => {
+            changeDoc((doc) => {
+              if (!doc) {
+                console.log("no doc");
+                doc = {};
+              }
+              if (!doc.layers) doc.layers = [];
+              doc.layers.push("patty");
+            });
+          }}
+        />
         <pre
           children={JSON.stringify({ doc, localState, peerStates }, null, 2)}
         />
       </div>
 
-      <Cursors peerStates={peerStates} />
+      <Cursors peerStates={peerStates} heartbeats={heartbeats} />
     </div>
   );
 };

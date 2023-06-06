@@ -10,7 +10,7 @@ export const useRemoteAwareness = (
   channelId,
   {
     localUserId, // Optional: BroadcastChannel sometimes sends us our own messages, this filters them
-    offlineTimeout = 3000,
+    offlineTimeout = 30000,
     getTime = () => new Date().getTime(),
   } = {}
 ) => {
