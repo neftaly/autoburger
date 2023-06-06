@@ -8,12 +8,14 @@ import { Cursors } from "./Cursors";
 import { useLocalAwareness } from "./useLocalAwareness";
 import { useRemoteAwareness } from "./useRemoteAwareness";
 
+const getRandomColor = () => "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')
+
 const App = ({ documentId, userId }) => {
   const [doc, changeDoc] = useDocument(documentId);
 
   const channelId = `${documentId}-useAwareness`;
   const [localState, updateLocalState] = useLocalAwareness(userId, channelId, {
-    color: "#" + Math.floor(Math.random() * 16777215).toString(16), // Generate random color
+    color: getRandomColor()
   });
   const [peerStates, heartbeats] = useRemoteAwareness(channelId, {
     localUserId: userId,
