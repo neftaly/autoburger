@@ -20,8 +20,6 @@ const App = ({ documentId, userId }) => {
     localUserId: userId,
   });
 
-  const layers = doc?.layers ?? ["bun"];
-
   return (
     <div
       onPointerMove={(event) => {
@@ -44,7 +42,7 @@ const App = ({ documentId, userId }) => {
         }}
       >
         <ambientLight intensity={0.5} />
-        <Burger layers={layers} />
+        <Burger layers={doc?.layers} />
         <OrbitControls
           minPolarAngle={0}
           maxPolarAngle={Math.PI / 1.9}
@@ -66,11 +64,6 @@ const App = ({ documentId, userId }) => {
           children="+"
           onClick={() => {
             changeDoc((doc) => {
-              if (!doc) {
-                console.log("no doc");
-                doc = {};
-              }
-              if (!doc.layers) doc.layers = [];
               doc.layers.push("patty");
             });
           }}

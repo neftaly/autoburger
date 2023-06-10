@@ -19,8 +19,6 @@ export const Layer = ({ type }) => {
 // As we're building from the bottom up, reverse the layer order
 export const Burger = ({ layers }) => (
   <Flex justifyContent="center" alignItems="center" position={[-0.5, 0, 0]}>
-    {layers.reverse().map((type, key) => (
-      <Layer key={key} type={type} />
-    ))}
+    {layers.map((type, key) => <Layer key={key} type={type} />).reverse()}
   </Flex>
 );
