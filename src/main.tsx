@@ -7,6 +7,7 @@ import { BroadcastChannelNetworkAdapter } from "automerge-repo-network-broadcast
 // import {
 //   LocalFirstRelayNetworkAdapter
 // } from 'automerge-repo-network-localfirstrelay'
+import { LocalForageStorageAdapter } from "automerge-repo-storage-localforage";
 import { RepoContext } from "automerge-repo-react-hooks";
 import { v4 } from "uuid";
 
@@ -17,11 +18,17 @@ const repo = new Repo({
     // new LocalFirstRelayNetworkAdapter ('ws://localhost:8080')
     // new LocalFirstRelayNetworkAdapter("wss://local-first-relay.glitch.me/")
   ],
+  storage: new LocalForageStorageAdapter(),
 });
 
 const rootDocId = (() => {
+  // To reset, comment out the following line and reload
   if (localStorage.rootDocId) return localStorage.rootDocId;
   const handle = repo.create();
+  // Initial state
+  handle.change((s) => {
+    s.layers = ["bun", "lettuce", "patty", "bun"];
+  });
   localStorage.rootDocId = handle.documentId;
   return handle.documentId;
 })();
