@@ -21,19 +21,36 @@ const repo = new Repo({
   storage: new LocalForageStorageAdapter(),
 });
 
+// Get a key from a query-param-style hash URL
+const getHashValue = (key: string) => {
+  const { hash } = window.location;
+  var matches = hash.match(new RegExp(`${key}=([^&]*)`));
+  return matches ? matches[1] : undefined;
+};
+
+// Get Automerge document ID
 const rootDocId = (() => {
-  // To reset, comment out the following line and reload
-  if (localStorage.rootDocId) return localStorage.rootDocId;
+  // Lookup existing document ID
+  const idFromHash = getHashValue("id");
+  if (idFromHash) return idFromHash as DocumentId;
+  // Create a new document
   const handle = repo.create();
-  // Initial state
+  // Set initial state
   handle.change((s) => {
     s.layers = ["bun", "lettuce", "patty", "bun"];
   });
-  localStorage.rootDocId = handle.documentId;
   return handle.documentId;
 })();
 
-const userId = v4();
+window.location.hash = `id=${rootDocId}`;
+
+// Prevent hash changes once the doc is loaded
+addEventListener("hashchange", (event) => {
+  if (getHashValue("id") !== rootDocId)
+    window.location.hash = `id=${rootDocId}`;
+});
+
+const userId = v4(); // Create a random userId (v4 UUID)
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <RepoContext.Provider value={repo}>
