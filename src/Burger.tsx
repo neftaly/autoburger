@@ -1,17 +1,35 @@
-import { Box } from "@react-three/drei";
+import { Box, Cylinder } from "@react-three/drei";
 import { Flex, Box as FlexBox } from "@react-three/flex";
 
 export const toppings = {
-  bun: { color: "yellow", args: [1.2, 0.2, 1.2] },
-  patty: { color: "brown", args: [1, 0.2, 1] },
-  lettuce: { color: "green", args: [1.1, 0.05, 1.1] },
+  bun: {},
+  patty: {},
+  lettuce: {},
+  tomato: {},
 };
 
+export const Bun = () => <Box args={[1.2, 0.2, 1.2]} material-color="yellow" />;
+
+export const Patty = () => <Box args={[1, 0.2, 1]} material-color="brown" />;
+
+export const Lettuce = () => (
+  <Box args={[1.1, 0.05, 1.1]} material-color="green" />
+);
+
+export const Tomato = () => (
+  <group>
+    <Cylinder args={[0.45, 0.45, 0.06]} material-color="pink" />
+    <Cylinder args={[0.5, 0.5, 0.05]} material-color="red" />
+  </group>
+);
+
 export const Layer = ({ type }) => {
-  const { args, color } = toppings[type];
   return (
     <FlexBox centerAnchor>
-      <Box args={args} material-color={color} />
+      {type === "bun" && <Bun />}
+      {type === "patty" && <Patty />}
+      {type === "lettuce" && <Lettuce />}
+      {type === "tomato" && <Tomato />}
     </FlexBox>
   );
 };
