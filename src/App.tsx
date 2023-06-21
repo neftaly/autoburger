@@ -4,6 +4,7 @@ import { useDocument } from "automerge-repo-react-hooks";
 import { Burger } from "./Burger";
 import { Cursors } from "./Cursors";
 import { LocalColor, getRandomColor } from "./LocalColor";
+import { Editor } from "./Editor";
 
 // https://github.com/automerge/automerge-repo/pull/45
 import { useLocalAwareness } from "./useLocalAwareness";
@@ -60,14 +61,7 @@ const App = ({ documentId, userId }) => {
         }}
       >
         <LocalColor color={localState.color} />
-        <button
-          children="+"
-          onClick={() => {
-            changeDoc((doc) => {
-              doc.layers.push("patty");
-            });
-          }}
-        />
+        <Editor doc={doc} changeDoc={changeDoc} />
       </div>
 
       <Cursors peerStates={peerStates} heartbeats={heartbeats} />

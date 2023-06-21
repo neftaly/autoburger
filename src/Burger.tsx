@@ -2,10 +2,10 @@ import { Box, Cylinder } from "@react-three/drei";
 import { Flex, Box as FlexBox } from "@react-three/flex";
 
 export const toppings = {
-  bun: {},
-  patty: {},
-  lettuce: {},
-  tomato: {},
+  bun: { name: "Wheat Bun" },
+  patty: { name: "Beef patty" },
+  lettuce: { name: "Iceburg lettuce" },
+  tomato: { name: "Roma tomato" },
 };
 
 export const Bun = () => <Box args={[1.2, 0.2, 1.2]} material-color="yellow" />;
