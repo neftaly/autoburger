@@ -1,4 +1,5 @@
 // Generate random hex color
+// eslint-disable-next-line react-refresh/only-export-components
 export const getRandomColor = () =>
   "#" +
   Math.floor(Math.random() * 16777215)
@@ -6,7 +7,7 @@ export const getRandomColor = () =>
     .padStart(6, "0");
 
 export const LocalColor = ({ color }) => (
-  <div>
+  <div style={{padding: '1rem'}}>
     Your color:&nbsp;
     <span
       style={{
