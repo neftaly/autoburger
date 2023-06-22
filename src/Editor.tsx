@@ -35,14 +35,8 @@ export const Editor = ({doc, changeDoc}) => {
 
                                 changeDoc(
                                     (doc) => {
-                                        const replacedLayer = doc.layers[key - 1];
-                                        const untouched = doc.layers.slice(key + 1)
-                                        const frontLayer = [...doc.layers]
-                                        frontLayer.splice(key - 1, untouched.length + 1, layer)
-                                        frontLayer.push(...[...untouched])
-                                        frontLayer[key] = replacedLayer
-                                        doc.layers.splice(0,frontLayer.length)
-                                        doc.layers.push(...frontLayer)
+                                        const itemToMove = doc.layers.splice(key, 1)[0]; 
+                                        doc.layers.splice(key-1, 0, itemToMove);
                                     }
                                 )
 
@@ -56,15 +50,8 @@ export const Editor = ({doc, changeDoc}) => {
                                         onClick={() =>
                                             changeDoc(
                                                 (doc) => {
-
-                                                    const replacedLayer = doc.layers[key + 1];
-                                                    const untouched = doc.layers.slice(key + 2)
-                                                    const frontLayer = [...doc.layers]
-                                                    frontLayer.splice(key + 1, untouched.length + 2, layer)
-                                                    frontLayer.push(...[...untouched])
-                                                    frontLayer[key] = replacedLayer
-                                                    doc.layers.splice(0,frontLayer.length)
-                                                    doc.layers.push(...frontLayer)
+                                        const itemToMove = doc.layers.splice(key, 1)[0]; 
+                                        doc.layers.splice(key+1, 0, itemToMove);
                                                 }
                                             )
                                         }
