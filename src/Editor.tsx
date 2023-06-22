@@ -41,7 +41,8 @@ export const Editor = ({doc, changeDoc}) => {
                                         frontLayer.splice(key - 1, untouched.length + 1, layer)
                                         frontLayer.push(...[...untouched])
                                         frontLayer[key] = replacedLayer
-                                        doc.layers = frontLayer
+                                        doc.layers.splice(0,frontLayer.length)
+                                        doc.layers.push(...frontLayer)
                                     }
                                 )
 
@@ -62,8 +63,8 @@ export const Editor = ({doc, changeDoc}) => {
                                                     frontLayer.splice(key + 1, untouched.length + 2, layer)
                                                     frontLayer.push(...[...untouched])
                                                     frontLayer[key] = replacedLayer
-                                                    doc.layers = frontLayer
-
+                                                    doc.layers.splice(0,frontLayer.length)
+                                                    doc.layers.push(...frontLayer)
                                                 }
                                             )
                                         }
