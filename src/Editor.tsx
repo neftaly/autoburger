@@ -10,7 +10,7 @@ export const Editor = ({doc, changeDoc}) => {
                         key={id}
                         style={{display: "block", marginBottom: '0.3rem'}}
                         children={`+ ${toppings[id].name}`}
-                        onClick={() => changeDoc((doc) => void doc.layers.push(id))}
+                        onClick={() => changeDoc((doc) => void doc.layers.unshift(id))}
                     />
                 ))}
             </div>
