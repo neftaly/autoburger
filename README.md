@@ -1,11 +1,11 @@
 
 # AutoBurger
 
-A burger product configurator to illustrate the seven ideals [Local-first software](https://www.inkandswitch.com/local-first/) using [Automerge Repo](https://github.com/automerge/automerge-repo)
+A burger product configurator to illustrate the seven ideals of [Local-first software](https://www.inkandswitch.com/local-first/) using [Automerge Repo](https://github.com/automerge/automerge-repo)
 
 
 ## Illustration
-Besides the intrincic motivation that comes from local-first such as data ownership and preservation, security and privacy, offline availability and enormous speed, we here illustrate basic Awareness and Presence in addition to local first collaboration.
+Besides the intrinsic motivation that comes from local-first such as data ownership and preservation, security and privacy, offline availability and enormous speed, we here illustrate basic Awareness and Presence in addition to local first collaboration.
 
 ## Test it locally
 
