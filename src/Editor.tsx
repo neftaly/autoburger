@@ -37,7 +37,6 @@ export const Editor = ({doc, changeDoc}) => {
                                     (doc) => {
                                         const layerToMove = doc.layers.splice(key, 1)[0];
                                         doc.layers.splice(key-1, 0, layerToMove);
-                                        console.log(Array.from(doc.layers))
                                     }
                                 )
                             }
@@ -52,7 +51,6 @@ export const Editor = ({doc, changeDoc}) => {
                                                 (doc) => {
                                         const layerToMove = doc.layers.splice(key, 1)[0];
                                         doc.layers.splice(key+1, 0, layerToMove);
-                                                    console.log(Array.from(doc.layers))
                                                 }
                                             )
                                         }
