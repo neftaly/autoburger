@@ -9,7 +9,7 @@ import {Editor} from "./Editor";
 // https://github.com/automerge/automerge-repo/pull/45
 import {useLocalAwareness} from "./useLocalAwareness";
 import {useRemoteAwareness} from "./useRemoteAwareness";
-import { useState} from "react";
+import { useState } from "react";
 
 const App = ({documentId, userId}) => {
     const [doc, changeDoc] = useDocument(documentId);
