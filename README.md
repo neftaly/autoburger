@@ -18,7 +18,7 @@ Clone the repo, install its dependencies and run it
   npm run dev
 ```
 
-Open copy invite link and share it as shown in the video below. 
+Open it. Copy invite link and share it as shown in the video below. 
 
 
 https://github.com/neftaly/autoburger/assets/11094475/896937ec-7955-466d-83e8-317a961a5a59
