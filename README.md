@@ -18,9 +18,9 @@ Clone the repo, install its dependencies and run it
   npm run dev
 ```
 
-Open it from two different browsers with your computer connected to wifi
+Open copy invite link and share it as shown in the video below. 
 
-* Take note of how you can tell the mouse position as you edit from one browser on the other and how the changes you make from one browser take effect in the other in real time.
+* With your computer connected to wifi, take note of how you can tell the mouse position as you edit from one browser on the other and how the changes you make from one browser take effect in the other in real time.
 * Turn off your wifi and refresh. Notice how you can still edit your burger even offline and how you can tell from the other browser that you're no longer online since your cursor position is no longer traceable. Also while offline, changes you make from one browser do not reflect on the other anymore.
 * Now turn your wifi back on, and see how the changes from all browsers while offline merge magically 😇
     
