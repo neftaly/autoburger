@@ -35,11 +35,11 @@ export const Editor = ({doc, changeDoc}) => {
 
                                 changeDoc(
                                     (doc) => {
-                                        const layerToMove = doc.layers.splice(key, 1)[0]; 
+                                        const layerToMove = doc.layers.splice(key, 1)[0];
                                         doc.layers.splice(key-1, 0, layerToMove);
+                                        console.log(Array.from(doc.layers))
                                     }
                                 )
-
                             }
 
                             }
@@ -50,8 +50,9 @@ export const Editor = ({doc, changeDoc}) => {
                                         onClick={() =>
                                             changeDoc(
                                                 (doc) => {
-                                        const layerToMove = doc.layers.splice(key, 1)[0]; 
+                                        const layerToMove = doc.layers.splice(key, 1)[0];
                                         doc.layers.splice(key+1, 0, layerToMove);
+                                                    console.log(Array.from(doc.layers))
                                                 }
                                             )
                                         }
