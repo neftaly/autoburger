@@ -5,11 +5,11 @@ export const Editor = ({doc, changeDoc}) => {
         <div>
             <hr/>
             <div style={{padding: '1rem'}}>
-                {Object.entries(toppings).map(([id]) => (
+                {Object.entries(toppings).map(([id, topping]) => (
                     <button
                         key={id}
                         style={{display: "block", marginBottom: '0.3rem'}}
-                        children={`+ ${toppings[id].name}`}
+                        children={`+ ${topping.name}`}
                         onClick={() => changeDoc((doc) => void doc.layers.unshift(id))}
                     />
                 ))}
@@ -26,7 +26,7 @@ export const Editor = ({doc, changeDoc}) => {
                         border: '1px dotted white',
                         padding: '1rem'
                     }}>
-                        <div>{toppings[layer].name}</div>
+                        <div>{toppings[layer]?.name ?? <s children={layer} /> }</div>
 
                         <div>{key > 0 ? <button
                             style={{marginLeft: '0.3rem'}}

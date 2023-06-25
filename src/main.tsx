@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import {DocumentId, Repo} from "automerge-repo";
+import { Repo} from "automerge-repo";
 // import { BroadcastChannelNetworkAdapter } from "automerge-repo-network-broadcastchannel";
 import {BrowserWebSocketClientAdapter} from "automerge-repo-network-websocket";
 import {LocalForageStorageAdapter} from "automerge-repo-storage-localforage";
@@ -17,41 +17,12 @@ const repo = new Repo({
     storage: new LocalForageStorageAdapter(),
 });
 
-// Get a key from a query-param-style hash URL
-const getHashValue = (key: string) => {
-    const {hash} = window.location;
-    const matches = hash.match(new RegExp(`${key}=([^&]*)`));
-    return matches ? matches[1] : undefined;
-};
-
-// Get Automerge document ID
-const rootDocId = (() => {
-    // Lookup existing document ID
-    const idFromHash = getHashValue("id");
-    if (idFromHash) return idFromHash as DocumentId;
-    // Create a new document
-    const handle = repo.create();
-    // Set initial state
-    handle.change((s: any) => {
-        s.layers = ["bun", "lettuce", "patty", "bun"];
-    });
-    return handle.documentId;
-})();
-
-window.location.hash = `id=${rootDocId}`;
-
-// Prevent hash changes once the doc is loaded
-addEventListener("hashchange", (/*event*/) => {
-    if (getHashValue("id") !== rootDocId)
-        window.location.hash = `id=${rootDocId}`;
-});
-
 const userId = v4(); // Create a random userId (v4 UUID)
 const root = document.getElementById("root") as HTMLElement;
 ReactDOM.createRoot(root).render(
     <RepoContext.Provider value={repo}>
         <React.StrictMode>
-            <App documentId={rootDocId} userId={userId}/>
+            <App userId={userId}/>
         </React.StrictMode>
     </RepoContext.Provider>
 );
