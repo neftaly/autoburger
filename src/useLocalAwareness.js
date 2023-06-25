@@ -30,7 +30,7 @@ export const useLocalAwareness = (
     // TODO: we don't need to send a heartbeat if we've changed state recently; use recursive setTimeout instead of setInterval
     const heartbeatIntervalId = setInterval(heartbeat, heartbeatTime);
     return () => void clearInterval(heartbeatIntervalId);
-  }, [ephemeralData]);
+  }, [userId, channelId, heartbeatTime, ephemeralData]);
 
   useEffect(() => {
     // Send entire state to new peers
@@ -50,7 +50,7 @@ export const useLocalAwareness = (
       newPeerEvents.off();
       broadcastTimeoutId && clearTimeout(broadcastTimeoutId);
     };
-  }, [peerEvents]);
+  }, [userId, channelId, peerEvents]);
 
   return [localState, setState];
 };

@@ -58,6 +58,6 @@ export const useRemoteAwareness = (
       ephemeralData.removeListener("data", handleIncomingUpdate);
       clearInterval(pruneOfflinePeersIntervalId);
     };
-  }, [ephemeralData]);
+  }, [channelId, localUserId, offlineTimeout, getTime, ephemeralData]);
   return [peerStates, heartbeats];
 };
