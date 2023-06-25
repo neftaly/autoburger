@@ -7,11 +7,14 @@ export const toppings = {
   patty: { name: "Beef patty" },
   lettuce: { name: "Iceburg lettuce" },
   tomato: { name: "Roma tomato" },
+  cheese: { name: "Cheddar cheese" }
 };
 
-export const Bun = () => <Box args={[1.2, 0.2, 1.2]} material-color="yellow" />;
+export const Bun = () => <Box args={[1.2, 0.2, 1.2]} material-color="khaki" />;
 
 export const Patty = () => <Box args={[1, 0.2, 1]} material-color="brown" />;
+
+export const Cheese = () => <Box args={[1.25, 0.05, 1.25]} material-color="yellow" />;
 
 export const Lettuce = () => (
   <Box args={[1.1, 0.05, 1.1]} material-color="green" />
@@ -31,6 +34,7 @@ export const Layer = ({ type }) => {
       {type === "patty" && <Patty />}
       {type === "lettuce" && <Lettuce />}
       {type === "tomato" && <Tomato />}
+      {type === "cheese" && <Cheese />}
     </FlexBox>
   );
 };
