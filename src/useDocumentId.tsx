@@ -1,5 +1,6 @@
 import { useRepo } from "automerge-repo-react-hooks";
 import { DocumentId } from "automerge-repo";
+import { useHash } from 'react-use'
 
 // Get a key from a query-param-style hash URL
 const getHashValue = (key: string) => (hash) =>
@@ -13,8 +14,7 @@ export const useDocumentId = (
     }
 ) => {
     const repo = useRepo();
-    // const [hash] = useHash();
-    const hash = window.location.hash
+    const [hash] = useHash();
 
     // Lookup existing document ID
     const idFromHash = getDocumentIdFromHash(hash);
