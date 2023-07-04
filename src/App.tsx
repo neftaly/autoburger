@@ -6,7 +6,7 @@ import { Burger } from "./Burger";
 import { Cursors } from "./Cursors";
 import { LocalColor, getRandomColor } from "./LocalColor";
 import { Editor } from "./Editor";
-import { useDocumentId } from "./useDocumentId";
+import { useBootstrap } from "./useBootstrap";
 import { Peers } from "./Peers";
 
 // https://github.com/automerge/automerge-repo/pull/45
@@ -15,8 +15,10 @@ import { useRemoteAwareness } from "./useRemoteAwareness";
 import { useState } from "react";
 
 const App = ({ userId }) => {
-  const documentId = useDocumentId((s: any) => {
-    s.layers = ["bun", "lettuce", "patty", "bun"];
+  const documentId = useBootstrap({
+    onCreate: (s: any) => {
+      s.layers = ["bun", "lettuce", "patty", "bun"];
+    },
   });
   const [doc, changeDoc] = useDocument(documentId);
   const [copied, setCopied] = useState(false);
