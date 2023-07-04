@@ -17,8 +17,6 @@ export const Editor = ({doc, changeDoc}) => {
             <div id="list" style={{minWidth: '290px'}}>
                 {doc?.layers.map((layer, key) => (
                     <div key={key} style={{
-                        cursor: 'move',
-                        userSelect: 'none',
                         display: 'flex',
                         justifyContent: 'space-between',
                         margin: '1rem',
