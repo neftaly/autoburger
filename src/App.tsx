@@ -16,6 +16,7 @@ import { useState } from "react";
 
 const App = ({ userId }) => {
   const documentId = useBootstrap({
+    localStorageKey: false,
     onCreate: (s: any) => {
       s.layers = ["bun", "lettuce", "patty", "bun"];
     },
