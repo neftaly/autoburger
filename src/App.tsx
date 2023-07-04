@@ -68,6 +68,18 @@ const App = ({ userId }) => {
           width: "auto",
         }}
       >
+        <a
+          href="https://github.com/garbo-succus/autoburger"
+          style={{
+            display: "inline-block",
+            color: "black",
+            padding: "1rem 1rem 0 1rem",
+            fontSize: "2em",
+          }}
+        >
+          Autoburger
+        </a>
+
         <Editor doc={doc} changeDoc={changeDoc} />
 
         <hr />
