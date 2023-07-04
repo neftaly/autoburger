@@ -7,14 +7,16 @@ export const toppings = {
   patty: { name: "Beef patty" },
   lettuce: { name: "Iceburg lettuce" },
   tomato: { name: "Roma tomato" },
-  cheese: { name: "Cheddar cheese" }
+  cheese: { name: "Cheddar cheese" },
 };
 
 export const Bun = () => <Box args={[1.2, 0.2, 1.2]} material-color="khaki" />;
 
 export const Patty = () => <Box args={[1, 0.2, 1]} material-color="brown" />;
 
-export const Cheese = () => <Box args={[1.25, 0.05, 1.25]} material-color="yellow" />;
+export const Cheese = () => (
+  <Box args={[1.25, 0.05, 1.25]} material-color="yellow" />
+);
 
 export const Lettuce = () => (
   <Box args={[1.1, 0.05, 1.1]} material-color="green" />
@@ -42,6 +44,8 @@ export const Layer = ({ type }) => {
 // As we're building from the bottom up, reverse the layer order
 export const Burger = ({ layers = [] }) => (
   <Flex justifyContent="center" alignItems="center" position={[-0.5, 0, 0]}>
-    {layers.map((type, key) => <Layer key={key} type={type} />)}
+    {layers.map((type, key) => (
+      <Layer key={key} type={type} />
+    ))}
   </Flex>
 );
