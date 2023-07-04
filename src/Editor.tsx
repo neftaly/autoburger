@@ -3,7 +3,6 @@ import {toppings} from "./Burger";
 export const Editor = ({doc, changeDoc}) => {
     return (
         <div>
-            <hr/>
             <div style={{padding: '1rem'}}>
                 {Object.entries(toppings).map(([id, topping]) => (
                     <button

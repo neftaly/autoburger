@@ -7,14 +7,5 @@ export const getRandomColor = () =>
     .padStart(6, "0");
 
 export const LocalColor = ({ color }) => (
-  <div style={{padding: '1rem'}}>
-    Your color:&nbsp;
-    <span
-      style={{
-        display: "inline-block",
-        backgroundColor: color,
-      }}
-      children={color}
-    />
-  </div>
+  <div style={{ backgroundColor: color }} children={`🍔 ${color} (you)`} />
 );

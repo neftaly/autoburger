@@ -6,6 +6,7 @@ import {Cursors} from "./Cursors";
 import {LocalColor, getRandomColor} from "./LocalColor";
 import {Editor} from "./Editor";
 import { useDocumentId } from "./useDocumentId";
+import {Peers} from './Peers'
 
 // https://github.com/automerge/automerge-repo/pull/45
 import {useLocalAwareness} from "./useLocalAwareness";
@@ -69,8 +70,16 @@ const App = ({ userId}) => {
                     width: "auto",
                 }}
             >
-                <LocalColor color={localState.color}/>
                 <Editor doc={doc} changeDoc={changeDoc}/>
+
+                <hr />
+                <div style={{
+                    padding: '1rem',}}>
+                    <h3>Peers:</h3>
+                    <LocalColor color={localState.color} />
+                    <Peers peerStates={peerStates} heartbeats={heartbeats} />
+                    </div>
+                    
             </div>
             <button
                 style={{
