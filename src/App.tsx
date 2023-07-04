@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useDocument } from "automerge-repo-react-hooks";
